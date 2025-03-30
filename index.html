@@ -34,9 +34,19 @@
     <!-- Corrected Image Path -->
     <img id="surprise" src="https://cdn.jsdelivr.net/gh/SRUJKULAL/funny-photo/weird-photo.jpeg" alt="Weird Friend" />
 
+    <!-- ✅ Hidden Audio -->
+    <audio id="surpriseAudio">
+        <source src="edited_00001.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
         function showImage() {
             document.getElementById("surprise").style.visibility = "visible";
+            
+            // ✅ Play the audio
+            var audio = document.getElementById("surpriseAudio");
+            audio.play();
         }
     </script>
 
