@@ -10,37 +10,46 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: black;
             text-align: center;
             font-family: Arial, sans-serif;
-            background-color: black;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            overflow: hidden; /* Prevent scrolling */
         }
+
         #container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
             display: none; /* Hidden initially */
             justify-content: center;
             align-items: center;
-            background-color: black;
+            height: 100vh;
+            width: 100vw;
         }
+
         #surprise {
             width: 100vw;
             height: 100vh;
-            object-fit: cover; /* Fullscreen image */
+            object-fit: cover; /* Ensures full-screen image */
         }
+
         button {
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 15px 30px;
+            font-size: 20px;
             cursor: pointer;
-            z-index: 10;
+            border: none;
+            background-color: #ff5722;
+            color: white;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #e64a19;
         }
     </style>
 </head>
@@ -48,17 +57,31 @@
 
     <h2>Click the button for a surprise!</h2>
     <button id="clickButton" onclick="showSurprise()">Click Me</button>
-    
-    <!-- Hidden Image & Audio -->
+
+    <!-- Hidden image container -->
     <div id="container">
-        <img id="surprise" src="https://cdn.jsdelivr.net/gh/SRUJKULAL/funny-photo@main/weird-photo.jpeg" alt="Weird Friend" />
-        <audio id="music" src="https://cdn.jsdelivr.net/gh/SRUJKULAL/funny-photo@main/edited_00001.mp3"></audio>
+        <img id="surprise" src="https://cdn.jsdelivr.net/gh/SRUJKULAL/funny-photo/weird-photo.jpeg" alt="Weird Friend" />
     </div>
+
+    <!-- Audio element -->
+    <audio id="music" src="https://cdn.jsdelivr.net/gh/SRUJKULAL/funny-photo/edited_00001.mp3"></audio>
 
     <script>
         function showSurprise() {
             document.getElementById("container").style.display = "flex"; // Show image
-            document.getElementById("music").play(); // Play audio
+            let music = document.getElementById("music");
+
+            // Try playing audio, handle mobile restrictions
+            music.play().then(() => {
+                console.log("Audio is playing");
+            }).catch(error => {
+                console.log("Audio blocked, retrying...");
+                music.muted = true; // Start muted
+                music.play().then(() => {
+                    music.muted = false; // Unmute after starting
+                });
+            });
+
             document.getElementById("clickButton").style.display = "none"; // Hide button
         }
     </script>
