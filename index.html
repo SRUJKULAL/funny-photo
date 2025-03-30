@@ -5,48 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Click for Surprise</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            margin-top: 50px;
+            background-color: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        #surprise {
-            display: none; /* Hides the image initially */
+        #container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: cover; /* Ensures full coverage */
+            display: none; /* Hidden initially */
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+        #surprise {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Ensures full-screen without distortion */
         }
         button {
             padding: 10px 20px;
             font-size: 18px;
             cursor: pointer;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
 
     <h2>Click the button for a surprise!</h2>
-    <button onclick="showImage()">Click Me</button>
+    <button onclick="showSurprise()">Click Me</button>
     
-    <!-- Corrected Image Path -->
-    <img id="surprise" src="https://cdn.jsdelivr.net/gh/SRUJKULAL/funny-photo/weird-photo.jpeg" alt="Weird Friend" />
-
-    <!-- ✅ Hidden Audio -->
-    <audio id="surpriseAudio">
-        <source src="https://cdn.jsdelivr.net/gh/SRUJKULAL/funny-photo@main/edited_00001.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <!-- Hidden Image & Audio -->
+    <div id="container">
+        <img id="surprise" src="https://cdn.jsdelivr.net/gh/SRUJKULAL/funny-photo@main/weird-photo.jpeg" alt="Weird Friend" />
+        <audio id="music" src="https://cdn.jsdelivr.net/gh/SRUJKULAL/funny-photo@main/edited_00001.mp3"></audio>
+    </div>
 
     <script>
-        function showImage() {
-            document.getElementById("surprise").style.visibility = "visible";
-            
-            // ✅ Play the audio
-            var audio = document.getElementById("surpriseAudio");
-            audio.play();
+        function showSurprise() {
+            document.getElementById("container").style.display = "flex";
+            document.getElementById("music").play();
         }
     </script>
 
