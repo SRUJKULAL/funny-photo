@@ -34,7 +34,7 @@
         #surprise {
             width: 100vw;
             height: 100vh;
-            object-fit: cover; /* Ensures full-screen without distortion */
+            object-fit: cover; /* Fullscreen image */
         }
         button {
             padding: 10px 20px;
@@ -47,7 +47,7 @@
 <body>
 
     <h2>Click the button for a surprise!</h2>
-    <button onclick="showSurprise()">Click Me</button>
+    <button id="clickButton" onclick="showSurprise()">Click Me</button>
     
     <!-- Hidden Image & Audio -->
     <div id="container">
@@ -57,8 +57,9 @@
 
     <script>
         function showSurprise() {
-            document.getElementById("container").style.display = "flex";
-            document.getElementById("music").play();
+            document.getElementById("container").style.display = "flex"; // Show image
+            document.getElementById("music").play(); // Play audio
+            document.getElementById("clickButton").style.display = "none"; // Hide button
         }
     </script>
 
