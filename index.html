@@ -11,13 +11,13 @@
             margin-top: 50px;
         }
         #surprise {
-            visibility: hidden;  /* ✅ Hide initially */
-            margin-top: 20px;
-            max-width: 80%;
-            
-            /* ✅ Center the image */
-            display: block;
-            margin: 0 auto;
+            display: none; /* Hides the image initially */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Ensures full coverage */
         }
         button {
             padding: 10px 20px;
